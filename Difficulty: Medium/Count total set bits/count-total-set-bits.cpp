@@ -23,31 +23,14 @@ class Solution{
     
     int countSetBits(int n)
     {
-        // if(n==0) return 0;
-        // //firstly find maximum power of 2 
-        // int x= findMaxPowerOf2ForN( n);
-        // int bitUptoMaxPowerOf2= (1<<(x-1))*x;
-        // int msbAfterPowerOf2= n-(1<<x)+1;
-        // int rest=n-bitUptoMaxPowerOf2;
-        // int ans=bitUptoMaxPowerOf2 + msbAfterPowerOf2 + countSetBits(rest);
-        // return ans;
-        int count = 0;
-        
-        // Iterate through all bit positions
-        for (int i = 0; (1 << i) <= n; i++) {
-            int cycle_length = 1 << (i + 1);  // Length of the cycle for this bit position
-            
-            // Count full cycles
-            count += (n / cycle_length) * (cycle_length / 2);
-            
-            // Count the remainder part of the cycle
-            int remainder = n % cycle_length;
-            if (remainder >= (cycle_length / 2)) {
-                count += remainder - (cycle_length / 2) + 1;
-            }
-        }
-        
-        return count;
+                if(n==0) return 0;
+        //firstly find maximum power of 2 
+        int x= findMaxPowerOf2ForN( n);
+        int bitUptoMaxPowerOf2= (1<<(x-1))*x;
+        int msbAfterPowerOf2= n-(1<<x)+1;
+        int rest=n-(1<<x);
+        int ans=bitUptoMaxPowerOf2 + msbAfterPowerOf2 + countSetBits(rest);
+        return ans;
 
     }
 };
